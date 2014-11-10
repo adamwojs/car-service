@@ -1,0 +1,43 @@
+{% extends 'CarServiceAdminBundle::template.html.twig' %}
+
+{% block body -%}
+    <h1>Testimonial list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Testimonial</th>
+                <th>Customername</th>
+                <th>Customeremail</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>{{ entity.testimonial }}</td>
+                <td>{{ entity.customerName }}</td>
+                <td>{{ entity.customerEmail }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('admin_testimonial_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('admin_testimonial_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>                
+            </tr>
+        {% endfor %} 
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('admin_testimonial_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

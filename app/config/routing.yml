@@ -1,7 +1,7 @@
 car_service_admin:
     resource: "@CarServiceAdminBundle/Controller/"
     type:     annotation
-    prefix:   /
+    prefix:   /admin
 
 car_service_app:
     resource: "@CarServiceAppBundle/Controller/"

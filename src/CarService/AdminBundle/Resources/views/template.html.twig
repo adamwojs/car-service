@@ -25,7 +25,19 @@
         <![endif]-->
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block navigation %}
+            {% include 'CarServiceAdminBundle::navigation.html.twig' %}
+        {% endblock %}
+        <div class="container-fluid">
+            {% block body %}{% endblock %}
+
+            <footer>
+                <hr />
+                <p class="text-right">
+                    <small>&copy; Adam Wójs. Wyszystkie prawa zastrzeżone.</small>
+                </p>
+            </footer>
+        </div>
 
         {% block javascripts %}
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

@@ -48,7 +48,7 @@ class Service {
     /**
      * @var ServiceGroup
      * 
-     * @ORM\ManyToOne(targetEntity="Service", inversedBy="services")
+     * @ORM\ManyToOne(targetEntity="ServiceGroup", inversedBy="services")
      * @ORM\JoinColumn(name="group_id", referencedColumnName="id")
      */
     private $group;    

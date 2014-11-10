@@ -22,7 +22,9 @@ class ServiceType extends AbstractType {
             ->add('name')
             ->add('description')
             ->add('price')
-            ->add('group')
+            ->add('group', 'entity', array(
+                'class' => 'CarServiceAppBundle:ServiceGroup'
+            ))
         ;
     }
 

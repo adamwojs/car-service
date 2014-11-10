@@ -32,7 +32,7 @@ class ServiceGroupController extends Controller {
         $entities = $em->getRepository('CarServiceAppBundle:ServiceGroup')->findAll();
 
         return array(
-            'entities' => $entities,
+            'groups' => $entities,
         );
     }
 

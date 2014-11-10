@@ -1,43 +1,78 @@
 {% extends 'CarServiceAdminBundle::template.html.twig' %}
 
 {% block body -%}
-    <h1>Testimonial list</h1>
+<div class="page-header">
+    <h1>Referencje</h1>
+</div>
 
-    <table class="records_list">
+<div class="panel panel-default">
+    <div class="panel-heading clearfix">
+        <h4 class="pull-left">Lista referencji</h4>
+        <div class="btn-toolbar pull-right">                
+            <a href="{{ url('admin_testimonial_new') }}" class="btn btn-default">
+                <i class="glyphicon glyphicon-plus-sign"></i>
+                Dodaj referencje
+            </a>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-condensed 
+           table-striped table-hover vertical-middle">
+
+        <colgroup>
+            <col width="200px"/>
+            <col width="200px"/>
+            <col />
+            <col width="128px"/>
+            <col width="168px"/>
+            <col width="132px"/>
+        </colgroup>
+
         <thead>
             <tr>
-                <th>Testimonial</th>
-                <th>Customername</th>
-                <th>Customeremail</th>
-                <th>Actions</th>
+                <th>Klient</th>
+                <th>Adres e-mail</th>
+                <th>Treść</th>
+                <th>Status</th>
+                <th>Data utworzenia</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td>{{ entity.testimonial }}</td>
-                <td>{{ entity.customerName }}</td>
-                <td>{{ entity.customerEmail }}</td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('admin_testimonial_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('admin_testimonial_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-                </td>                
-            </tr>
-        {% endfor %} 
+            {% for entity in entities %}
+                <tr>
+                    <td>{{ entity.customerName }}</td>
+                    <td>
+                        <a href="mailto:{{ entity.customerEmail }}">
+                            {{ entity.customerEmail }}</td>
+                        </a>
+                    <td>{{ entity.testimonial }}</td>
+                    <td>{{ entity.status }}</td>
+                    <td>
+                        {% if entity.createdAt %}
+                            {{ entity.createdAt|date('d-m-Y H:i') }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        <form action="{{ path('admin_testimonial_delete', { 'id': entity.id }) }}" method="post" name="form">
+                            <div class="btn-group">
+                                <a href="{{ path('admin_testimonial_edit', { 'id': entity.id }) }}" class="btn btn-default">
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                    Edytuj
+                                </a>
+                                    
+                                <button name="form[submit]" type="submit" class="btn btn-danger">
+                                    <i class="glyphicon glyphicon-trash"></i>
+                                </button>
+                            </div>
+                                    
+                            <input type="hidden" value="DELETE" name="_method" />
+                            <input type="hidden" name="form[_token]" value="{{ csrf_token('form') }}" />
+                        </form>
+                    </td>                
+                </tr>
+            {% endfor %}                     
         </tbody>
     </table>
-
-        <ul>
-        <li>
-            <a href="{{ path('admin_testimonial_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
-    {% endblock %}
+</div>
+{% endblock %}

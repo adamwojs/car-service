@@ -113,4 +113,8 @@ class ServiceGroup {
     public function setUpdatedAt(DateTime $updatedAt) {
         $this->updatedAt = $updatedAt;
     }
+    
+    public function __toString() {
+        return (string) $this->getName();
+    }    
 }

@@ -1,0 +1,5 @@
+car_service_app:
+    resource: "@CarServiceAppBundle/Controller/"
+    type:     annotation
+    prefix:   /
+

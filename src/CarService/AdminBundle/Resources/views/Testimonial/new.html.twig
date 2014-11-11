@@ -1,15 +1,16 @@
 {% extends 'CarServiceAdminBundle::template.html.twig' %}
 
 {% block body -%}
-    <h1>Testimonial creation</h1>
+<div class="page-header">
+    <h1>Dodaj referencje</h1>
+</div>    
 
-    {{ form(form) }}
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('admin_testimonial') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>Referencja</h4>
+    </div>
+    <div class="panel-body">
+        {{ form(form, { 'style': 'horizontal' }) }}
+    </div>
+</div>
 {% endblock %}
